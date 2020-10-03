@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlanetRingWorld : PlanetMain
 {
+    public int numOfNodes = 30;
+    public float length = 4f;
+
     private void Start()
     {
         Init();
@@ -11,10 +14,14 @@ public class PlanetRingWorld : PlanetMain
 
     void Init()
     {
-        numberOfNodes = 30;
+        List<int> nodeTypes = new List<int>();
+        for(int i=0; i<numOfNodes; i++)
+        {
+            nodeTypes.Add(0);
+        }
 
         //Use the circular loop generator
         GraphGeneratorCircularLoop generator = new GraphGeneratorCircularLoop();
-        GenerateInitPlanet(generator, 5f);
+        GenerateInitPlanet(generator, nodeTypes, numOfNodes, length);
     }
 }

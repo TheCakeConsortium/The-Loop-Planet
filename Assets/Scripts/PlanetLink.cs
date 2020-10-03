@@ -9,9 +9,6 @@ public class PlanetLink : MonoBehaviour
     public PlanetNode nodePrev { get; set; }
     public PlanetNode nodeNext { get; set; }
 
-    //Assume sprite is horizontal, its origin at the left-center and have a length of 1, connect the 2 ends along the x axis
-    public Sprite sprite;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +21,7 @@ public class PlanetLink : MonoBehaviour
         
     }
 
+    //Assume sprite is horizontal, its origin at the left-center and have a length of 1, connect the 2 ends along the x axis
     public void PlaceLinkAtNodes()
     {
         Vector3 prevPos = nodePrev.transform.position;
