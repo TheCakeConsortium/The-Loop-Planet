@@ -23,7 +23,7 @@ public class PlanetMain : MonoBehaviour
         listOfNodes = new List<PlanetNode>();
         listOfLinks = new List<PlanetLink>();
 
-        GraphGenerator.GraphData graphData = generator.Generate(numberOfNodes, scale, Vector3.zero);
+        GraphGenerator.GraphData graphData = generator.Generate(numberOfNodes, scale, containerForBoth.transform.position);
         for(int i=0; i<graphData.nodes.Count; i++)
         {
             if (i > nodeTypes.Count - 1)
@@ -53,13 +53,13 @@ public class PlanetMain : MonoBehaviour
 
     public void BeginRotatePlanet(float angle)
     {
-        StartCoroutine(RotatePlanet(angle, 0.01f));
+        StartCoroutine(RotatePlanet(angle, 0.002f));
     }
 
     public void BeginRotatePlanet(int startingIndex, int stoppingIndex)
     {
         float angle = (360f / listOfNodes.Count) * (stoppingIndex - startingIndex);
-        StartCoroutine(RotatePlanet(angle, 0.01f));
+        StartCoroutine(RotatePlanet(angle, 0.002f));
     }
 
     private IEnumerator RotatePlanet(float deltaAngle, float speed)

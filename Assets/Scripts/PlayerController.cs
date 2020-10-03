@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void DisplaceToTopOfPlanet()
     {
-        transform.position = new Vector3(0, planet.length, 0);
+        transform.position = new Vector3(0, planet.length, 0) + GM.planet.containerForBoth.transform.position;
     }
 
     public PlanetNode GetCurrentPlanetNode()

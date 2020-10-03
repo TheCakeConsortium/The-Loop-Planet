@@ -29,8 +29,8 @@ public class UIMaster : MonoBehaviour
 
     void OnClickLeftFunction()
     {
-        GM.planet.BeginRotatePlanet(GM.player.currentNodeIndex, GM.player.currentNodeIndex + 1);
-        GM.player.currentNodeIndex++;
+        GM.planet.BeginRotatePlanet(GM.player.currentNodeIndex, GM.player.currentNodeIndex - 1);
+        GM.player.currentNodeIndex--;
         Debug.Log(GM.player.GetCurrentPlanetNode().index);
         GM.player.UpdateNewNodeEffect();
         GM.AddDaysPassed(1);
@@ -38,8 +38,8 @@ public class UIMaster : MonoBehaviour
 
     void OnClickRightFunction()
     {
-        GM.planet.BeginRotatePlanet(GM.player.currentNodeIndex, GM.player.currentNodeIndex - 1);
-        GM.player.currentNodeIndex--;
+        GM.planet.BeginRotatePlanet(GM.player.currentNodeIndex, GM.player.currentNodeIndex + 1);
+        GM.player.currentNodeIndex++;
         Debug.Log(GM.player.GetCurrentPlanetNode().index);
         GM.player.UpdateNewNodeEffect();
         GM.AddDaysPassed(1);
