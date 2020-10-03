@@ -7,18 +7,18 @@ using TMPro;
 //This code is probably gonna be very VERY messy, haha
 public class UIMaster : MonoBehaviour
 {
+    [SerializeField] GameMaster GM;
+
     PlanetNode currentSelectedNode;
     [SerializeField] UIMasterNodeCursor currentSelectedCursor;
 
     [SerializeField] Button button_moveL;
     [SerializeField] Button button_moveR;
+    [SerializeField] Button button_stay;
     [SerializeField] Button buttion_buildLink;
 
     List<string> messageList;
     [SerializeField] TextMeshProUGUI messageList_text;
-
-    [SerializeField] PlanetMain planet;
-    [SerializeField] PlayerController player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,24 +27,22 @@ public class UIMaster : MonoBehaviour
         button_moveR.onClick.AddListener(OnClickRightFunction);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnClickLeftFunction()
     {
-        planet.BeginRotatePlanet(player.currentNodeIndex, player.currentNodeIndex + 1);
-        player.currentNodeIndex++;
-        Debug.Log(player.GetCurrentPlanetNode().index);
+        GM.planet.BeginRotatePlanet(GM.player.currentNodeIndex, GM.player.currentNodeIndex + 1);
+        GM.player.currentNodeIndex++;
+        Debug.Log(GM.player.GetCurrentPlanetNode().index);
+        GM.player.UpdateNewNodeEffect();
+        GM.AddDaysPassed(1);
     }
 
     void OnClickRightFunction()
     {
-        planet.BeginRotatePlanet(player.currentNodeIndex, player.currentNodeIndex - 1);
-        player.currentNodeIndex--;
-        Debug.Log(player.GetCurrentPlanetNode().index);
+        GM.planet.BeginRotatePlanet(GM.player.currentNodeIndex, GM.player.currentNodeIndex - 1);
+        GM.player.currentNodeIndex--;
+        Debug.Log(GM.player.GetCurrentPlanetNode().index);
+        GM.player.UpdateNewNodeEffect();
+        GM.AddDaysPassed(1);
     }
 
     public void ChangeSelection(PlanetNode node)

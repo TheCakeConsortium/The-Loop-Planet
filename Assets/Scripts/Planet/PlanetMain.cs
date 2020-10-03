@@ -16,6 +16,8 @@ public class PlanetMain : MonoBehaviour
     public GameObject containerForNodes;
     public GameObject containerForLinks;
 
+    //Add node based on the indexing of the typeOfNode, will determine what kind of node spawn at each index.
+    //Insert the appropriate list of integers to spawn the appropriate node types for each node.
     protected void GenerateInitPlanet(GraphGenerator generator, List<int> nodeTypes, int numberOfNodes, float scale)
     {
         listOfNodes = new List<PlanetNode>();

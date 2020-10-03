@@ -5,8 +5,8 @@ using UnityEngine;
 public class NodeEffect_ReduceStats : NodeEffect
 {
     override
-    public void Effect()
+    public void Effect(ref PlayerController player)
     {
-
+        player.hunger--;
     }
 }

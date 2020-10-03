@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    int hunger = 100;
-    int warmth = 100;
-    int numOfBridges = 0;
+    [SerializeField] GameMaster GM;
+
+    public int hunger { get; set; }
+    public int warmth { get; set; }
+    public int numOfBridges { get; set; }
 
     public int currentNodeIndex = 0;
 
@@ -16,17 +18,19 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         DisplaceToTopOfPlanet();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        hunger = 10;
+        numOfBridges = 1;
     }
 
     public void UpdateNewNodeEffect()
     {
+        GetCurrentPlanetNode().TriggerEffect();
+        Debug.Log("hunger: " + hunger + "   warmth: " + warmth + "  numofbridges: " + numOfBridges);
 
+        if(hunger <= 0)
+        {
+            GM.LoseGame();
+        }
     }
 
     private void DisplaceToTopOfPlanet()

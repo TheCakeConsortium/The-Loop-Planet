@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class NodeEffect
 {
-    public abstract void Effect();
+    public abstract void Effect(ref PlayerController player);
 }

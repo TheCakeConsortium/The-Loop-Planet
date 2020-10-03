@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlanetRingWorld : PlanetMain
 {
-    public int numOfNodes = 30;
+    public int numOfNodes = 15;
     public float length = 4f;
 
     private void Start()
     {
         Init();
     }
+
+
 
     void Init()
     {
@@ -19,6 +21,9 @@ public class PlanetRingWorld : PlanetMain
         {
             nodeTypes.Add(0);
         }
+
+        //Add a foodplace at index 2, just to test
+        nodeTypes[2] = 1;
 
         //Use the circular loop generator
         GraphGeneratorCircularLoop generator = new GraphGeneratorCircularLoop();

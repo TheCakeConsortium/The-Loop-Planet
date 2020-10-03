@@ -5,36 +5,30 @@ using UnityEngine.UI;
 
 public class PlanetNode : MonoBehaviour
 {
-    public int index { get; set; }
-    List<int> listOfEntities;
-    List<int> listOfEvents;
-
-    int parameter;
-
-    Sprite picture;
-
     [SerializeField] Button button;
-    [SerializeField] UIMaster uiRef;
 
-    [SerializeField] List<NodeEffect> effect;
+    GameMaster GM;
+    public int index { get; set; }
+    public List<NodeEffect> effects = new List<NodeEffect>();
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         button.onClick.AddListener(OnClickFunction);
+        GM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
     }
 
     void OnClickFunction()
     {
-        uiRef.ChangeSelection(this);
+        GM.ui.ChangeSelection(this);
         Debug.Log("node number " + index + " at " + transform.position + " is clicked!");
     }
 
     public void TriggerEffect()
     {
-        foreach(var ef in effect)
+        foreach(var ef in effects)
         {
-            ef.Effect();
+            ef.Effect(ref GM.player);
         }
     }
 }
