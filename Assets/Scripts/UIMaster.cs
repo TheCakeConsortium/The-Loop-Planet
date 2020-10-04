@@ -232,7 +232,9 @@ public class UIMaster : MonoBehaviour
     {
         currentSelectedCursor.isTransiting = true;
         Vector3 newPos = currentSelectedNode.transform.position;
+        Quaternion newRot = currentSelectedNode.transform.rotation;
 
+        currentSelectedCursor.transform.rotation = newRot;
         while (Mathf.Abs((newPos - currentSelectedCursor.transform.position).magnitude) > 0.0005)
         {
             currentSelectedCursor.transform.position += (newPos - currentSelectedCursor.transform.position) * 0.1f;
