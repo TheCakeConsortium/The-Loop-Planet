@@ -11,17 +11,22 @@ public class GraphGeneratorCircularLoop : GraphGenerator
         if (numOfNodes < 3)
             numOfNodes = 3;
 
-        GraphData output = new GraphData();
-        output.nodes = new List<Vector3>();
-        output.links = new List<int>();
+        GraphData output = new GraphData
+        {
+            nodes = new List<Vector3>(),
+            nodes_rot = new List<Quaternion>(),
+            links = new List<int>(),
 
-        output.isLinksDirectional = false;
+            isLinksDirectional = false
+        };
 
-        for(int i=0; i< numOfNodes; i++)
+        for (int i=0; i< numOfNodes; i++)
         {
             float angle = 360f * ((float)i / (float)numOfNodes);
             Vector3 pos = offset + (Quaternion.AngleAxis(angle, Vector3.forward) * (new Vector3(0, 1, 0) * avgDistance));
+            Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
             output.nodes.Add(pos);
+            output.nodes_rot.Add(rot);
             if (i != 0)
             {
                 output.links.Add(i - 1);

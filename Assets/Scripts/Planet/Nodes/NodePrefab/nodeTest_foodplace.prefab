@@ -313,3 +313,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 5606455414815308075}
+  flavorText: 
+  flavorImage: {fileID: 21300000, guid: 67a82c7b283a79342bcb7ab5586cc50f, type: 3}

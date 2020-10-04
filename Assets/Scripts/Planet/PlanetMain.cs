@@ -5,6 +5,8 @@ using UnityEngine;
 //The planet will contain a list of planet nodes and planet links, forming a graph.
 public class PlanetMain : MonoBehaviour
 {
+    [SerializeField] GameMaster GM;
+
     public List<PlanetNode> listOfNodes { get; set; }
     public List<PlanetLink> listOfLinks { get; set; }
 
@@ -15,6 +17,8 @@ public class PlanetMain : MonoBehaviour
     public GameObject containerForBoth;
     public GameObject containerForNodes;
     public GameObject containerForLinks;
+
+    public bool isPlanetRotating = false;
 
     //Add node based on the indexing of the typeOfNode, will determine what kind of node spawn at each index.
     //Insert the appropriate list of integers to spawn the appropriate node types for each node.
@@ -28,7 +32,7 @@ public class PlanetMain : MonoBehaviour
         {
             if (i > nodeTypes.Count - 1)
                 break;
-            GameObject obj = Instantiate(typeOfNode[nodeTypes[i]], graphData.nodes[i], Quaternion.identity, containerForNodes.transform);
+            GameObject obj = Instantiate(typeOfNode[nodeTypes[i]], graphData.nodes[i], graphData.nodes_rot[i], containerForNodes.transform);
             PlanetNode node = obj.GetComponent<PlanetNode>();
             node.index = i;
             listOfNodes.Add(node);
@@ -51,6 +55,30 @@ public class PlanetMain : MonoBehaviour
         }
     }
 
+    public void MakeLink(int fromNode, int toNode)
+    {
+        GameObject obj = Instantiate(typeOfLink, Vector3.zero, Quaternion.identity, containerForLinks.transform);
+        PlanetLink link = obj.GetComponent<PlanetLink>();
+        link.nodePrev = listOfNodes[fromNode];
+        link.nodeNext = listOfNodes[toNode];
+        link.PlaceLinkAtNodes();
+        listOfLinks.Add(link);
+    }
+
+    public PlanetLink CheckForLinks(int index)
+    {
+        //Start from the number of nodes, assume the first few links are initial links.
+        //Only check for additional links
+        for(int i=listOfNodes.Count; i<listOfLinks.Count; i++)
+        {
+            if(listOfLinks[i].nodePrev.index == index || listOfLinks[i].nodeNext.index == index)
+            {
+                return listOfLinks[i];
+            }
+        }
+        return null;
+    }
+
     public void BeginRotatePlanet(float angle)
     {
         StartCoroutine(RotatePlanet(angle, 0.002f));
@@ -58,17 +86,19 @@ public class PlanetMain : MonoBehaviour
 
     public void BeginRotatePlanet(int startingIndex, int stoppingIndex)
     {
-        float angle = (360f / listOfNodes.Count) * (stoppingIndex - startingIndex);
+        float angle = (360f / listOfNodes.Count) * (stoppingIndex - startingIndex) * -1;
         StartCoroutine(RotatePlanet(angle, 0.002f));
     }
 
     private IEnumerator RotatePlanet(float deltaAngle, float speed)
     {
+        isPlanetRotating = true;
         if (speed > 1 || speed <= 0)
             speed = 1;
 
         float angle = 0;
         float angleChange = speed * deltaAngle;
+        GM.player.SetPlayerAnim(true, (deltaAngle < 0 ? false : true));
 
         while (Mathf.Abs(angle) < Mathf.Abs(deltaAngle))
         {
@@ -77,6 +107,8 @@ public class PlanetMain : MonoBehaviour
             yield return null;
         }
 
+        GM.player.SetPlayerAnim(false, (deltaAngle < 0 ? false : true));
         containerForBoth.transform.Rotate(Vector3.forward, deltaAngle - angle);
+        isPlanetRotating = false;
     }
 }

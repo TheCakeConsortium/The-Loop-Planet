@@ -8,6 +8,7 @@ public class PlanetNode_Normal : PlanetNode
     {
         base.Start();
         InitEffects();
+        flavorText = "This is just a normal looking place...huh";
     }
 
     private void InitEffects()

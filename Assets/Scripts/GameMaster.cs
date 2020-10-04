@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Should use singleton pattern, but i don't want to risk it with monobehaviour
 //And i'm too anxious to code properly
@@ -12,12 +13,13 @@ public class GameMaster : MonoBehaviour
     public UIMaster ui;
     public PlanetMain planet;
 
-    private int numberOfDays = 0;
+    public int numberOfDays = 0;
+    public int numberOfDays_limit = 3;
 
     public void AddDaysPassed(int daysPassed)
     {
         numberOfDays += daysPassed;
-        if(numberOfDays >= 30)
+        if(numberOfDays >= numberOfDays_limit)
         {
             WinGame();
         }
@@ -26,10 +28,22 @@ public class GameMaster : MonoBehaviour
     public void WinGame()
     {
         Debug.Log("You win lol");
+        GoToWinScene();
     }
 
     public void LoseGame()
     {
         Debug.Log("You lose lol");
+        GoToLoseScene();
+    }
+
+    private void GoToWinScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    private void GoToLoseScene()
+    {
+        SceneManager.LoadScene(3);
     }
 }

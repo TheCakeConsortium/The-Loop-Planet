@@ -11,6 +11,9 @@ public class PlanetNode : MonoBehaviour
     public int index { get; set; }
     public List<NodeEffect> effects = new List<NodeEffect>();
 
+    public string flavorText;
+    public Sprite flavorImage;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -30,5 +33,15 @@ public class PlanetNode : MonoBehaviour
         {
             ef.Effect(ref GM.player);
         }
+    }
+
+    public string GetFlavorText()
+    {
+        string finalText = flavorText + "\n";
+        foreach(var ef in effects)
+        {
+            finalText += (ef.flavorText + "\n");
+        }
+        return finalText;
     }
 }

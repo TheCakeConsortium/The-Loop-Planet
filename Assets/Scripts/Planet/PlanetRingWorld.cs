@@ -12,8 +12,6 @@ public class PlanetRingWorld : PlanetMain
         Init();
     }
 
-
-
     void Init()
     {
         List<int> nodeTypes = new List<int>();
