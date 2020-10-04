@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer sprite;
 
     public int hunger { get; set; }
-    public int warmth { get; set; }
+    public int thermalWelfare { get; set; }
+    public int batteryPower { get; set; }
     public int numOfBridges { get; set; }
 
     public int currentNodeIndex { get; private set; }
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     {
         DisplaceToTopOfPlanet(new Vector3(0, 0.05f, 0));
         hunger = 10;
+        thermalWelfare = 10;
+        batteryPower = 10;
         numOfBridges = 1;
         currentNodeIndex = 0;
     }
@@ -28,9 +31,8 @@ public class PlayerController : MonoBehaviour
     public void UpdateNewNodeEffect()
     {
         GetCurrentPlanetNode().TriggerEffect();
-        Debug.Log("hunger: " + hunger + "   warmth: " + warmth + "  numofbridges: " + numOfBridges);
 
-        if(hunger <= 0)
+        if(hunger <= 0 || thermalWelfare <= 0 || batteryPower <= 0)
         {
             GM.LoseGame();
         }

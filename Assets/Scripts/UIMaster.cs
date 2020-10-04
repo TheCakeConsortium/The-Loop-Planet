@@ -6,7 +6,7 @@ using TMPro;
 using System;
 using System.Linq;
 
-//This code is probably gonna be very VERY messy, haha
+//This code is very VERY bad and very messy, haha
 public class UIMaster : MonoBehaviour
 {
     [SerializeField] GameMaster GM;
@@ -27,12 +27,16 @@ public class UIMaster : MonoBehaviour
     [SerializeField] Button button_moveOnLink;
     private PlanetLink linkStandingOn;
     [SerializeField] Button button_cancelBuildLink;
+    bool isLinkBuildingCancel = false;
 
     int messageLimit = 10;
     Queue<string> messageList = new Queue<string>();
     [SerializeField] TextMeshProUGUI flavorText_text;
     [SerializeField] Image flavorText_image;
     private event Action OnFlavorTextUpdate;
+
+    [SerializeField] GameObject message_extraInfo_obj;
+    [SerializeField] TextMeshProUGUI message_extraInfo;
 
     [SerializeField] TextMeshProUGUI message_playerStats;
 
@@ -43,18 +47,37 @@ public class UIMaster : MonoBehaviour
         button_moveR.onClick.AddListener(OnClickRightFunction);
         button_buildLink.onClick.AddListener(OnClickMakeLinkFunction);
         button_moveOnLink.onClick.AddListener(OnClickMoveOnLinkFunction);
+        button_cancelBuildLink.onClick.AddListener(CancelBuildLink);
         OnNodeChange += CheckForLinkExistence;
         OnFlavorTextUpdate += UpdateFlavorText;
+        UpdatePlayerStatsUI();
     }
 
     private void Update()
     {
+        
+    }
+
+    void UpdatePlayerStatsUI()
+    {
         message_playerStats.text =
             "Hunger: " + GM.player.hunger + "\n" +
+            "Thermal: " + GM.player.thermalWelfare + "\n" +
+            "Battery: " + GM.player.batteryPower + "\n" +
             "Links left: " + GM.player.numOfBridges + "\n\n" +
             "Days left: " + (GM.numberOfDays_limit - GM.numberOfDays).ToString()
             ;
+    }
 
+    public void PushMessage(string msg)
+    {
+        messageList.Enqueue(msg);
+
+        if (messageList.Count > messageLimit)
+            messageList.Dequeue();
+
+        if (OnFlavorTextUpdate != null)
+            OnFlavorTextUpdate.Invoke();
     }
 
     public void PushMessage(string msg, Sprite img)
@@ -166,24 +189,46 @@ public class UIMaster : MonoBehaviour
         }
     }
 
+    void CancelBuildLink()
+    {
+        isLinkBuildingCancel = true;
+        isSelectionDone = true;
+    }
+
     IEnumerator WaitForNodeSelection()
     {
         if (GM.player.numOfBridges <= 0)
+        {
+            PushMessage("You have ran out of links!");
             yield break;
+        }
+            
 
         isSelectionDone = false;
         ChangeInteractableAllButtons(false);
+        button_cancelBuildLink.gameObject.SetActive(true);
         OnSelectionChange += SelectNode;
+        ShowExtraInfo("You are now building a link. Click on 2 nodes (the little box buttons) to establish the link.");
         while(!isSelectionDone)
         {
             yield return null;
         }
 
-        GM.planet.MakeLink(selectedNode1.index, selectedNode2.index);
-        GM.player.numOfBridges--;
-        selectedNode1 = null;
-        selectedNode2 = null;
+        if(!isLinkBuildingCancel)
+        {
+            GM.planet.MakeLink(selectedNode1.index, selectedNode2.index);
+            GM.player.numOfBridges--;
+            selectedNode1 = null;
+            selectedNode2 = null;
+        }
+        else
+        {
+            isLinkBuildingCancel = false;
+        }
+
+        HideExtraInfo();
         ChangeInteractableAllButtons(true);
+        button_cancelBuildLink.gameObject.SetActive(false);
         OnSelectionChange -= SelectNode;
         isSelectionDone = true;
     }
@@ -201,6 +246,7 @@ public class UIMaster : MonoBehaviour
             OnNodeChange.Invoke(GM.player.currentNodeIndex);
 
         var node = GM.planet.listOfNodes[GM.player.currentNodeIndex];
+        UpdatePlayerStatsUI();
         PushMessage(node.GetFlavorText(), node.flavorImage);
     }
 
@@ -245,5 +291,16 @@ public class UIMaster : MonoBehaviour
         currentSelectedCursor.targetNode = currentSelectedNode;
         currentSelectedCursor.isTransiting = false;
         yield return null;
+    }
+
+    void ShowExtraInfo(string msg)
+    {
+        message_extraInfo_obj.SetActive(true);
+        message_extraInfo.text = msg;
+    }
+
+    void HideExtraInfo()
+    {
+        message_extraInfo_obj.SetActive(false);
     }
 }

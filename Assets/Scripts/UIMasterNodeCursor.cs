@@ -13,6 +13,7 @@ public class UIMasterNodeCursor : MonoBehaviour
         if(!isTransiting && targetNode != null)
         {
             transform.position = targetNode.transform.position;
+            transform.rotation = targetNode.transform.rotation;
         }
     }
 }

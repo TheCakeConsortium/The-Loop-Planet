@@ -13,5 +13,7 @@ public class PlanetNode_Forest : PlanetNode
     private void InitEffects()
     {
         effects.Add(new NodeEffect_ReduceStats());
+        effects.Add(new NodeEffect_ThermalRecovery());
+        effects.Add(new NodeEffect_BatteryDrain());
     }
 }

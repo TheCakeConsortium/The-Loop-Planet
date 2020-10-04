@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetNode_IcePlace : PlanetNode
+public class PlanetNode_Sea_Island : PlanetNode
 {
     private new void Start()
     {
@@ -12,7 +12,7 @@ public class PlanetNode_IcePlace : PlanetNode
 
     private void InitEffects()
     {
-        effects.Add(new NodeEffect_ReduceStats());
-        effects.Add(new NodeEffect_Cold());
+        effects.Add(new NodeEffect_RestoreHunger());
+        effects.Add(new NodeEffect_BatteryDrain());
     }
 }

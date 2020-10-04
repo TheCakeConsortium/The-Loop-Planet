@@ -15,13 +15,36 @@ public class PlanetRingWorld : PlanetMain
     void Init()
     {
         List<int> nodeTypes = new List<int>();
-        for(int i=0; i<numOfNodes; i++)
-        {
-            nodeTypes.Add(0);
-        }
 
-        //Add a foodplace at index 2, just to test
-        nodeTypes[2] = 1;
+        nodeTypes.Add(1);
+        nodeTypes.Add(1);
+
+        nodeTypes.Add(2);
+        nodeTypes.Add(2);
+        nodeTypes.Add(2);
+
+        nodeTypes.Add(2);
+
+        nodeTypes.Add(3);
+        nodeTypes.Add(3);
+        nodeTypes.Add(3);
+
+        nodeTypes.Add(4);
+        nodeTypes.Add(4);
+        nodeTypes.Add(4);
+
+        nodeTypes.Add(5);
+
+        nodeTypes.Add(5);
+        nodeTypes.Add(5);
+        nodeTypes.Add(5);
+        nodeTypes.Add(5);
+
+        nodeTypes.Add(6);
+        nodeTypes.Add(6);
+
+        nodeTypes.Add(1);
+
 
         //Use the circular loop generator
         GraphGeneratorCircularLoop generator = new GraphGeneratorCircularLoop();

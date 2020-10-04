@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeEffect_RestoreHunger : NodeEffect
+public class NodeEffect_Cold : NodeEffect
 {
     override
     public string flavorText
     {
-        get { return "I found some food and had a nice meal. Yay!\nHunger(10) restored"; }
+        get { return "I'm freezing cold!! I don't feel so good.\nThermal Welfare(-2)"; }
     }
 
     override
     public void Effect(ref PlayerController player)
     {
-        player.hunger = 10;
+        player.thermalWelfare -= 2;
     }
 }

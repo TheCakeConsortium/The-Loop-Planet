@@ -7,7 +7,7 @@ public class NodeEffect_ReduceStats : NodeEffect
     override
     public string flavorText
     {
-        get { return "You are getting hungrier!"; }
+        get { return "The day is tiring, and I didn't eat anything...\nHunger(-1)"; }
     }
 
     override

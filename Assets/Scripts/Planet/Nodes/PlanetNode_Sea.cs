@@ -13,5 +13,7 @@ public class PlanetNode_Sea : PlanetNode
     private void InitEffects()
     {
         effects.Add(new NodeEffect_ReduceStats());
+        effects.Add(new NodeEffect_ColdByWater());
+        effects.Add(new NodeEffect_BatteryDrain());
     }
 }

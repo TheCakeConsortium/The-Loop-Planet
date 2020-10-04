@@ -13,5 +13,6 @@ public class PlanetNode_Desert : PlanetNode
     private void InitEffects()
     {
         effects.Add(new NodeEffect_ReduceStats());
+        effects.Add(new NodeEffect_HotByDesert());
     }
 }

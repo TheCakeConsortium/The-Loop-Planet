@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeEffect_RestoreHunger : NodeEffect
+public class NodeEffect_RechargeBattery : NodeEffect
 {
     override
     public string flavorText
     {
-        get { return "I found some food and had a nice meal. Yay!\nHunger(10) restored"; }
+        get { return "My suit's battery is recharged, nice!\nBattery Power(10) recharged"; }
     }
 
     override
     public void Effect(ref PlayerController player)
     {
-        player.hunger = 10;
+        player.batteryPower = 10;
     }
 }
