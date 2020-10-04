@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 860580483010168121}
-  - component: {fileID: 3817768541305944654}
+  - component: {fileID: -6500525869336520975}
   m_Layer: 0
   m_Name: Node_IcePlace_DestroyedCity
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3817768541305944654
+--- !u!114 &-6500525869336520975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,13 +140,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 860580483010168122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79bd41d86e17ac64bb6a8a54fff12989, type: 3}
+  m_Script: {fileID: 11500000, guid: bc92d2ce2229f05438b1052c55042914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 860580483772949254}
   flavorText: Looks like there used to be a thriving civilization here...but what
     happened? And why is it in the middle of nowhere?
   flavorImage: {fileID: 21300000, guid: 361e04ada43207049bd6e6a745054699, type: 3}
+  additionalText: A very cold place, you will suffer cold damage. There might be
+    some tech that can recharge your suit.
 --- !u!1 &860580483772949249
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,8 @@ MonoBehaviour:
     gotta have a flaming hell on it as well! I hope I don't literally die fro the
     heat...
   flavorImage: {fileID: 21300000, guid: fbc4d514b9a62a94a9a8fe6d56847b2d, type: 3}
+  additionalText: A VERY hot place, it will severly damage your thermal welfare,
+    but you might get some suit power out of the geothermal energy.
 --- !u!1 &5850307259110877894
 GameObject:
   m_ObjectHideFlags: 0

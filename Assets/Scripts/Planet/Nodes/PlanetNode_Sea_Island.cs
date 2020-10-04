@@ -12,7 +12,8 @@ public class PlanetNode_Sea_Island : PlanetNode
 
     private void InitEffects()
     {
-        effects.Add(new NodeEffect_RestoreHunger());
+        effects.Add(new NodeEffect_ThermalRecovery());
+        effects.Add(new NodeEffect_RestoreHunger_Partial());
         effects.Add(new NodeEffect_BatteryDrain());
     }
 }

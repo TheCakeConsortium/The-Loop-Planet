@@ -55,7 +55,7 @@ public class UIMaster : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     void UpdatePlayerStatsUI()
@@ -227,6 +227,8 @@ public class UIMaster : MonoBehaviour
         }
 
         HideExtraInfo();
+        UpdatePlayerStatsUI();
+        CheckForLinkExistence(GM.player.currentNodeIndex);
         ChangeInteractableAllButtons(true);
         button_cancelBuildLink.gameObject.SetActive(false);
         OnSelectionChange -= SelectNode;
@@ -281,6 +283,12 @@ public class UIMaster : MonoBehaviour
         Quaternion newRot = currentSelectedNode.transform.rotation;
 
         currentSelectedCursor.transform.rotation = newRot;
+
+        if(isSelectionDone)
+        {
+            ShowExtraInfo(currentSelectedNode.additionalText);
+        }
+
         while (Mathf.Abs((newPos - currentSelectedCursor.transform.position).magnitude) > 0.0005)
         {
             currentSelectedCursor.transform.position += (newPos - currentSelectedCursor.transform.position) * 0.1f;

@@ -14,5 +14,6 @@ public class PlanetNode_Desert : PlanetNode
     {
         effects.Add(new NodeEffect_ReduceStats());
         effects.Add(new NodeEffect_HotByDesert());
+        effects.Add(new NodeEffect_BatteryDrain());
     }
 }

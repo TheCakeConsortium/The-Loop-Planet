@@ -166,6 +166,8 @@ MonoBehaviour:
   flavorText: The forest's thick vegetation makes it hard to see...I swear I'm being
     watched.
   flavorImage: {fileID: 21300000, guid: 4343466e7da013347bb8999f0a99e3bb, type: 3}
+  additionalText: A forest...really nothing special about it. You might find some
+    food here. The environment is also nice.
 --- !u!1 &9201827428073132544
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,6 +48,8 @@ MonoBehaviour:
   flavorText: The desert heat is really unbearable! Even with the suit's air conditioning,
     it feels like I'm in a thermal reactor, or something.
   flavorImage: {fileID: 21300000, guid: 0cd095608819c25489ee639668c28e82, type: 3}
+  additionalText: A hot place, you will suffer some heat damage and there isn't much
+    here.
 --- !u!1 &5637431648067433032
 GameObject:
   m_ObjectHideFlags: 0

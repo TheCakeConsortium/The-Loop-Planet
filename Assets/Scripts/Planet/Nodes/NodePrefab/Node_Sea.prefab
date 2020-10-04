@@ -265,3 +265,4 @@ MonoBehaviour:
   flavorText: Thankfully, my suit comes with a portable water-mobile, this sea looks
     really vast! Hmm, am I seeing an island?
   flavorImage: {fileID: 21300000, guid: 94c6b643dc72f4c4e98f5fdbc2bb8bab, type: 3}
+  additionalText: The sea has little to offer, although there might be some surprises...

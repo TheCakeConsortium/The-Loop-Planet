@@ -48,6 +48,8 @@ MonoBehaviour:
   flavorText: This place is...freaky...I don't know what's going on, but I shouldn't
     stay any longer than I absolutely have to.
   flavorImage: {fileID: 21300000, guid: 67a82c7b283a79342bcb7ab5586cc50f, type: 3}
+  additionalText: A bizzare and alien place, it's existence is a mystery. There might
+    be useful tech to recharge your suit.
 --- !u!1 &6953793767115422886
 GameObject:
   m_ObjectHideFlags: 0

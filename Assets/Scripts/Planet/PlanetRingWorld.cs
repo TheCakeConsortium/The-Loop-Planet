@@ -20,28 +20,28 @@ public class PlanetRingWorld : PlanetMain
         nodeTypes.Add(1);
 
         nodeTypes.Add(2);
-        nodeTypes.Add(2);
-        nodeTypes.Add(2);
-
+        nodeTypes.Add(3);
         nodeTypes.Add(2);
 
-        nodeTypes.Add(3);
-        nodeTypes.Add(3);
-        nodeTypes.Add(3);
+        nodeTypes.Add(2);
 
         nodeTypes.Add(4);
         nodeTypes.Add(4);
-        nodeTypes.Add(4);
-
-        nodeTypes.Add(5);
-
-        nodeTypes.Add(5);
-        nodeTypes.Add(5);
-        nodeTypes.Add(5);
         nodeTypes.Add(5);
 
         nodeTypes.Add(6);
+        nodeTypes.Add(7);
         nodeTypes.Add(6);
+
+        nodeTypes.Add(6);
+
+        nodeTypes.Add(8);
+        nodeTypes.Add(9);
+        nodeTypes.Add(9);
+        nodeTypes.Add(8);
+
+        nodeTypes.Add(11);
+        nodeTypes.Add(10);
 
         nodeTypes.Add(1);
 

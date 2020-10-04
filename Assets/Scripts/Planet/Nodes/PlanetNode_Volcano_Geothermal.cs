@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetNode_Eldritch : PlanetNode
+public class PlanetNode_Volcano_Geothermal : PlanetNode
 {
     private new void Start()
     {
@@ -12,7 +12,8 @@ public class PlanetNode_Eldritch : PlanetNode
 
     private void InitEffects()
     {
+        effects.Add(new NodeEffect_RechargeBattery());
         effects.Add(new NodeEffect_ReduceStats());
-        effects.Add(new NodeEffect_BatteryDrain());
+        effects.Add(new NodeEffect_Hot());
     }
 }

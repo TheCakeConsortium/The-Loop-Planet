@@ -14,5 +14,6 @@ public class PlanetNode_IcePlace : PlanetNode
     {
         effects.Add(new NodeEffect_ReduceStats());
         effects.Add(new NodeEffect_Cold());
+        effects.Add(new NodeEffect_BatteryDrain());
     }
 }

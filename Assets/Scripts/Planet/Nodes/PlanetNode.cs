@@ -14,6 +14,8 @@ public class PlanetNode : MonoBehaviour
     public string flavorText;
     public Sprite flavorImage;
 
+    public string additionalText;
+
     // Start is called before the first frame update
     protected void Start()
     {
