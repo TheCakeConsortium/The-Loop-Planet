@@ -81,13 +81,13 @@ public class PlanetMain : MonoBehaviour
 
     public void BeginRotatePlanet(float angle)
     {
-        StartCoroutine(RotatePlanet(angle, 0.002f));
+        StartCoroutine(RotatePlanet(angle, 0.7f));
     }
 
     public void BeginRotatePlanet(int startingIndex, int stoppingIndex)
     {
         float angle = (360f / listOfNodes.Count) * (stoppingIndex - startingIndex) * -1;
-        StartCoroutine(RotatePlanet(angle, 0.002f));
+        StartCoroutine(RotatePlanet(angle, 0.7f));
     }
 
     private IEnumerator RotatePlanet(float deltaAngle, float speed)
@@ -102,9 +102,9 @@ public class PlanetMain : MonoBehaviour
 
         while (Mathf.Abs(angle) < Mathf.Abs(deltaAngle))
         {
-            containerForBoth.transform.Rotate(Vector3.forward, angleChange);
-            angle += angleChange;
-            yield return null;
+            containerForBoth.transform.Rotate(Vector3.forward, angleChange * Time.deltaTime);
+            angle += angleChange * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
 
         GM.player.SetPlayerAnim(false, (deltaAngle < 0 ? false : true));
